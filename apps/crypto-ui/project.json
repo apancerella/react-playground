@@ -1,0 +1,72 @@
+{
+  "root": "apps/crypto-ui",
+  "sourceRoot": "apps/crypto-ui/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/crypto-ui",
+        "index": "apps/crypto-ui/src/index.html",
+        "baseHref": "/",
+        "main": "apps/crypto-ui/src/main.tsx",
+        "polyfills": "apps/crypto-ui/src/polyfills.ts",
+        "tsConfig": "apps/crypto-ui/tsconfig.app.json",
+        "assets": [
+          "apps/crypto-ui/src/favicon.ico",
+          "apps/crypto-ui/src/assets"
+        ],
+        "styles": ["apps/crypto-ui/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/crypto-ui/src/environments/environment.ts",
+              "with": "apps/crypto-ui/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "crypto-ui:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "crypto-ui:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/crypto-ui/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/crypto-ui"],
+      "options": {
+        "jestConfig": "apps/crypto-ui/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

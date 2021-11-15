@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "crypto-ui": "apps/crypto-ui",
+    "crypto-ui-e2e": "apps/crypto-ui-e2e"
+  }
+}
